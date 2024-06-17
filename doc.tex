@@ -1,0 +1,244 @@
+\documentclass[letterpaper]{article}
+\usepackage[legalpaper, left=1 cm, right=1cm, top=0.5cm, bottom=0.5cm] {geometry}
+\date{} % Remove a exibição da data
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref} % Para criar links
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    language=python, % Use 'HTML' para a linguagem HTML
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{orange},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{orange}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{blue},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle-on}{
+    language=Python,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{pythonStyle-off}{
+    language=Python,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+
+% Define o estilo para HTML
+\lstdefinestyle{htmlStyle}{
+    language=python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{orange},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{htmlStyle-on}{
+    language=python,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{htmlStyle-off}{
+    language=python,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+
+\lstdefinestyle{cssStyle}{
+    language=HTML,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{green},
+    commentstyle=\color{blue}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{cssStyle-off}{
+    language=HTML,
+    basicstyle=\ttfamily\small\color{red},
+    keywordstyle=\color{red},
+    stringstyle=\color{red},
+    commentstyle=\color{red}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{red},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstdefinestyle{cssStyle-on}{
+    language=HTML,
+    basicstyle=\ttfamily\small\color{green},
+    keywordstyle=\color{green},
+    stringstyle=\color{green},
+    commentstyle=\color{green}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\lstset{style=mystyle}
+\title{\textbf{Testes e TDD}}
+\begin{document}
+\maketitle
+\section{Configurações iniciais}
+As configurações contidas nesse arquivo definem as configurações do vs code para compilador e para code runner
+\lstinputlisting[title=settings.json]{.vscode/settings.json}
+
+\section{Assertions}
+Verifica se o caractere de entrada é válida.
+
+\begin{lstlisting}[style=mystyle, title= assertions declaração e checagem] 
+    assert isinstance(x, (int, float)), 'x precisa ser int ou float'
+\end{lstlisting}
+
+\begin{lstlisting}[style=mystyle, title=Uso no código] 
+    def soma(x, y):
+        assert isinstance(x, (int, float)), 'x precisa ser int ou float'
+        assert isinstance(y, (int, float)), 'y precisa ser int ou float'
+    return x + y
+
+\end{lstlisting}
+
+\subsection{desativação de assertions}
+
+\begin{lstlisting}[style=mystyle, title=desativação shell]
+    python3 -O <nome_arquivo>
+    
+\end{lstlisting}
+
+\section{Testes via Doctests}
+\subsection{Implementação}
+\begin{lstlisting}[style=mystyle, title= ] 
+    def subtrai(x, y):
+    """
+    >>> subtrai(30 ,  20)
+        10
+    >>> soma('a',  20)
+    typerror
+
+    """
+    assert isinstance(x, (int, float)), 'x precisa ser int ou float'
+    assert isinstance(y, (int, float)), 'y precisa ser int ou float'
+    return x - y
+
+    if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose= True)
+
+
+\end{lstlisting}
+
+\section{Testes pelo unittest}
+
+\lstinputlisting[title=teste para calculadora.py]{tests/test_calculadora.py}
+
+
+\section{Código final}
+\lstinputlisting[title= main.py]{main.py}
+
+
+\lstinputlisting[title=calculadora]{src/calculadora.py}
+
+\section{TDD}
+\lstinputlisting[title=Baconcomovos]{src/baconcomovos.py}
+\lstinputlisting[title=testeBaconcomovos]{tests/teste_baconcomovos.py}
+
+\section{TDD  pessoa.py}
+\textbf{link para a documenetção unittest}
+\href{https://docs.python.org/pt-br/3/library/unittest.html#setupclass-and-teardownclass}{documentação}
+\lstinputlisting[title = testePessoa.py]{tests/test_pessoa.py}
+
+\section{importando módulos para dentro do codigo}
+Rodando todos os testes 
+\textbf{ python3 -m  unittest -v}
+
+\begin{lstlisting}[style=mystyle, title= importação ] 
+    try:
+    import sys
+    import os
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                '../src'
+            )
+        )
+    )
+except:
+    raise
+\end{lstlisting}
+
+\section{type hints e mypy}
+rodando testes no arquivo especificado
+\textbf{mypy nomeArquivo}\\
+A aula referente mypy do curso se referia a pycharm, e portanto as tipagens pareciam não funcionar
+
+\lstinputlisting[title=typehints.py]{src/typehints1.py}
+
+
+\end{document}
+\section{}
+\begin{lstlisting}[style=mystyle, title= ] 
+\end{lstlisting}
+\lstinputlisting[title=aula03.html]{aulas/aula03.html}
+

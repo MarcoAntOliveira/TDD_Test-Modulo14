@@ -1,0 +1,27 @@
+# Arquivos de resíduos do LaTeX
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
+tempCodeRunnerFile.py
+# Ambientes virtuais de Python
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyzw
+.Python
+.vscode/
+.mypy_cache
+
+# Outros resíduos comuns
+.DS_Store
+Thumbs.db
